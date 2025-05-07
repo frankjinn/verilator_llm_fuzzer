@@ -16,7 +16,7 @@ set -e
 # Build instrumented version of verilator
 pushd ../..
 autoconf
-AFL_HARDEN=1 CC=afl-gcc CXX=afl-g++ ./configure $(cd ..; pwd)
+AFL_HARDEN=1 CC=afl-clang-fast CXX=afl-clang-fast++ ./configure $(cd ..; pwd)
 make clean
 make -j $(ncpus)
 popd
@@ -30,4 +30,4 @@ mkdir in1
 echo "module m; initial \$display(\"Hello world!\n\"); endmodule" > in1/1.v
 
 # Compile wrapper program
-AFL_HARDEN=1 CXX=afl-g++ make wrapper
+AFL_HARDEN=1 CXX=afl-clang-fast++ make wrapper
