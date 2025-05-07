@@ -14,6 +14,6 @@
 
 set -e
 
-sudo ./setup_root
-./setup_user
+sudo ./setup_root.sh
+./setup_user.sh
 # ./run
