@@ -16,4 +16,4 @@ set -e
 
 sudo ./setup_root
 ./setup_user
-./run
+# ./run
