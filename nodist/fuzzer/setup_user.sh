@@ -20,4 +20,4 @@ popd
 ./generate_dictionary
 
 # Compile wrapper program
-AFL_HARDEN=1 CXX=afl-clang-fast++ CXXFLAGS="CXXFLAGS -fprofile-arcs -ftest-coverage" make wrapper
+AFL_HARDEN=1 CXX=afl-clang-fast++ CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage" make wrapper
