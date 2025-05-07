@@ -25,9 +25,5 @@ popd
 # Not essential, but makes things likely to be found faster.
 ./generate_dictionary
 
-# Set up input directory
-mkdir in1
-echo "module m; initial \$display(\"Hello world!\n\"); endmodule" > in1/1.v
-
 # Compile wrapper program
 AFL_HARDEN=1 CXX=afl-clang-fast++ make wrapper
