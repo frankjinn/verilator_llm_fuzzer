@@ -10,7 +10,8 @@ set -e
 # Build instrumented version of verilator
 pushd ../..
 autoconf
-AFL_HARDEN=1 CC=afl-clang-fast CXX=afl-clang-fast++ ./configure $(cd ..; pwd)
+AFL_HARDEN=1 CC=/AFLplusplus/afl-gcc-fast CXX=/AFLplusplus/afl-g++-fast CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage" CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage" LFLAGS="$LFLAGS -lgcov" ./configure $(cd ..; pwd)
+
 make clean
 make -j $(ncpus)
 popd
@@ -20,4 +21,4 @@ popd
 ./generate_dictionary
 
 # Compile wrapper program
-AFL_HARDEN=1 CXX=afl-clang-fast++ make wrapper
+AFL_HARDEN=1 CXX=/AFLplusplus/afl-g++-fast CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage" LFLAGS="$LFLAGS -lgcov" make wrapper
